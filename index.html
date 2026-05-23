@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>奥森五月观鸟手册</title>
+<style>
+:root{--paper:#f4ede0;--paper-deep:#ebe1ce;--ink:#2a2418;--ink-soft:#5a4f3a;--accent:#8b3a1f;--moss:#5a6b3a;--line:#bdb09a}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:rgba(139,58,31,0.1)}
+html,body{background:var(--paper);color:var(--ink);font-family:-apple-system,"PingFang SC","Microsoft YaHei",serif;line-height:1.7}
+.wrap{max-width:780px;margin:0 auto;padding:0 22px 80px}
+.cover{text-align:center;padding:50px 0 40px;border-bottom:1px solid var(--line)}
+.cover .eyebrow{font-style:italic;font-size:13px;letter-spacing:0.2em;color:var(--ink-soft);text-transform:uppercase;margin-bottom:14px}
+.cover h1{font-weight:500;font-size:30px;line-height:1.2;letter-spacing:0.08em;margin-bottom:10px}
+.cover .sub{font-size:14px;color:var(--ink-soft);font-style:italic}
+.cover .ornament{margin:22px auto 0;width:50px;height:1px;background:var(--line);position:relative}
+.cover .ornament::before,.cover .ornament::after{content:"";position:absolute;top:50%;width:5px;height:5px;background:var(--accent);border-radius:50%;transform:translateY(-50%)}
+.cover .ornament::before{left:-10px}.cover .ornament::after{right:-10px}
+.intro{padding:24px 0 16px;font-size:14.5px;color:var(--ink-soft);border-bottom:1px dashed var(--line)}
+.intro strong{color:var(--ink);font-weight:500}
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
+.tip{background:var(--paper-deep);padding:12px 14px;border-left:2px solid var(--accent);font-size:13.5px;line-height:1.55}
+.tip .label{font-style:italic;font-size:11px;letter-spacing:0.15em;color:var(--accent);text-transform:uppercase;display:block;margin-bottom:4px}
+/* TOC */
+.toc{margin:24px 0;padding:18px 20px;background:var(--paper-deep);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.toc-title{font-style:italic;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.toc>ol{list-style:none;counter-reset:toc}
+.toc>ol>li{counter-increment:toc;padding:8px 0 4px;border-bottom:1px dotted var(--line)}
+.toc>ol>li:last-child{border-bottom:none}
+.toc>ol>li::before{content:counter(toc,upper-roman) ".";font-style:italic;color:var(--accent);margin-right:8px;font-size:14.5px}
+.toc>ol>li>a{color:var(--ink);text-decoration:none;font-size:14.5px}
+.toc .count{font-style:italic;color:var(--ink-soft);font-size:12.5px;margin-left:6px}
+.toc-birds{display:flex;flex-wrap:wrap;list-style:none;padding:4px 0 4px 28px;gap:0 2px}
+.toc-birds li{font-size:12.5px;line-height:1.8}
+.toc-birds li::after{content:" ·";color:var(--line);margin-right:3px}
+.toc-birds li:last-child::after{content:""}
+.toc-birds a{color:var(--ink-soft);text-decoration:none}
+.toc-birds a:hover{color:var(--accent);text-decoration:underline}
+.toc-birds a.star{color:var(--accent);font-weight:500}
+/* Habitat */
+.habitat{margin-top:42px;padding-top:24px;border-top:2px solid var(--ink)}
+.habitat-head{display:flex;align-items:baseline;gap:12px;margin-bottom:6px;flex-wrap:wrap}
+.habitat-num{font-style:italic;font-size:36px;color:var(--accent);line-height:1}
+.habitat-title{font-size:22px;font-weight:500;letter-spacing:0.05em}
+.habitat-en{font-style:italic;color:var(--ink-soft);font-size:14px;margin-left:auto}
+.habitat-desc{color:var(--ink-soft);font-size:14px;font-style:italic;margin-bottom:22px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.bird{margin-bottom:30px;background:#fbf6e9;border:1px solid var(--line);padding:14px;border-radius:2px;box-shadow:1px 1px 0 var(--line)}
+.bird-photo{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;margin-bottom:12px;border:1px solid var(--line);background:#f4ede0;border-radius:2px}
+.bird-name{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.bird-name .cn{font-size:19px;font-weight:500;letter-spacing:0.04em}
+.bird-name .en{font-style:italic;color:var(--ink-soft);font-size:13.5px}
+.bird-name .tag{font-size:10.5px;letter-spacing:0.15em;text-transform:uppercase;padding:2px 7px;border:1px solid currentColor;border-radius:2px;margin-left:auto;font-weight:500}
+.tag.common{color:var(--moss)}.tag.uncommon{color:var(--ink-soft)}
+.tag.star{color:var(--accent);background:rgba(139,58,31,0.08)}
+.field{display:flex;gap:10px;margin:8px 0;font-size:13.8px}
+.field .key{font-style:italic;color:var(--accent);min-width:46px;font-weight:500}
+.field .val{color:var(--ink);flex:1}
+.footer{margin-top:50px;padding-top:22px;border-top:1px solid var(--line);text-align:center;color:var(--ink-soft);font-size:12.5px;font-style:italic}
+@media (max-width:600px){.cover h1{font-size:25px}.tips{grid-template-columns:1fr}.bird-name .tag{margin-left:0;margin-top:2px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<section class="cover">
+  <div class="eyebrow">A Field Companion · 2026.05</div>
+  <h1>奥森五月观鸟手册</h1>
+  <div class="sub">北京奥林匹克森林公园 · 春末夏初 · 49 种</div>
+  <div class="ornament"></div>
+</section>
+
+<section class="intro">
+  <p>五月底的奥森处在 <strong>春迁尾声 + 夏候鸟繁殖期</strong> 的交叠时段。手册按 <strong>四种生境</strong> 组织,到了对应区域,翻到对应章节即可。优先看 <span style="color:var(--accent);font-weight:500">★ 标星</span> 的几种。</p>
+</section>
+
+<div class="tips">
+  <div class="tip"><span class="label">Best Time</span>清晨 6:00–9:00 最活跃,傍晚 16:00–18:00 次之。</div>
+  <div class="tip"><span class="label">Core Zone</span>南园湿地(地铁 8 号线森林公园南门站)是核心区。</div>
+  <div class="tip"><span class="label">Gear</span>8×42 望远镜;穿暗色衣物;不用闪光灯;距离 5 米以上。</div>
+  <div class="tip"><span class="label">Listen First</span>很多鸟先闻其声。安静下来比走得快更重要。</div>
+</div>
+
+<nav class="toc">
+  <div class="toc-title">Contents · 目次</div>
+  <ol>
+    <li>
+      <a href="#h1">水域开阔区<span class="count">7 种</span></a>
+      <ul class="toc-birds">
+        <li><a href="#b01">小䴙䴘</a></li>
+        <li><a href="#b02">黑水鸡</a></li>
+        <li><a href="#b03">白骨顶</a></li>
+        <li><a href="#b04">绿头鸭</a></li>
+        <li><a href="#b05">鸳鸯</a></li>
+        <li><a href="#b06">苍鹭</a></li>
+        <li><a href="#b07" class="star">★ 普通翠鸟</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#h2">芦苇湿地<span class="count">8 种</span></a>
+      <ul class="toc-birds">
+        <li><a href="#b08" class="star">★ 东方大苇莺</a></li>
+        <li><a href="#b09" class="star">★ 震旦鸦雀</a></li>
+        <li><a href="#b10">普通秧鸡</a></li>
+        <li><a href="#b11">大麻鳽</a></li>
+        <li><a href="#b12">大杜鹃</a></li>
+        <li><a href="#b13" class="star">★ 蓝喉歌鸲</a></li>
+        <li><a href="#b14">棕头鸦雀</a></li>
+        <li><a href="#b15">中华攀雀</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#h3">林地与林缘<span class="count">21 种</span></a>
+      <ul class="toc-birds">
+        <li><a href="#b16" class="star">★ 戴胜</a></li>
+        <li><a href="#b17" class="star">★ 红嘴蓝鹊</a></li>
+        <li><a href="#b18" class="star">★ 黑枕黄鹂</a></li>
+        <li><a href="#b19">灰喜鹊</a></li>
+        <li><a href="#b20">大斑啄木鸟</a></li>
+        <li><a href="#b21">灰头绿啄木鸟</a></li>
+        <li><a href="#b22">乌鸫</a></li>
+        <li><a href="#b23">黑尾蜡嘴雀</a></li>
+        <li><a href="#b24">大山雀</a></li>
+        <li><a href="#b25">红尾伯劳</a></li>
+        <li><a href="#b26">牛头伯劳</a></li>
+        <li><a href="#b27">银喉长尾山雀</a></li>
+        <li><a href="#b28">北长尾山雀</a></li>
+        <li><a href="#b29">金翅雀</a></li>
+        <li><a href="#b30">沼泽山雀</a></li>
+        <li><a href="#b31">黄腹山雀</a></li>
+        <li><a href="#b32">暗绿绣眼鸟</a></li>
+        <li><a href="#b33">黄腰柳莺</a></li>
+        <li><a href="#b34">乌鹟</a></li>
+        <li><a href="#b35">北灰鹟</a></li>
+        <li><a href="#b36">白头鹎</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#h4">草地与空中<span class="count">13 种</span></a>
+      <ul class="toc-birds">
+        <li><a href="#b37">家燕</a></li>
+        <li><a href="#b38">金腰燕</a></li>
+        <li><a href="#b39">珠颈斑鸠</a></li>
+        <li><a href="#b40">山鹡鸰</a></li>
+        <li><a href="#b41">栗耳鹀</a></li>
+        <li><a href="#b42">灰头鹀</a></li>
+        <li><a href="#b43">黑喉石鵖</a></li>
+        <li><a href="#b44">黄眉鹀</a></li>
+        <li><a href="#b45" class="star">★ 黄胸鹀</a></li>
+        <li><a href="#b46">树鹨</a></li>
+        <li><a href="#b47">理氏鹨</a></li>
+        <li><a href="#b48">灰椋鸟</a></li>
+        <li><a href="#b49">赤腹鹰</a></li>
+      </ul>
+    </li>
+  </ol>
+</nav>
+
+<!-- ══════════════════════════════════════ -->
+<!--  I. 水域开阔区  7 种                  -->
+<!-- ══════════════════════════════════════ -->
+<section class="habitat" id="h1">
+  <div class="habitat-head"><div class="habitat-num">I</div><div class="habitat-title">水域开阔区</div><div class="habitat-en">Open Water</div></div>
+  <p class="habitat-desc">奥海主湖、北侧开阔水面。看游禽、潜水鸟、岸边涉禽。</p>
+
+  <div class="bird" id="b01">
+    <img class="bird-photo" src="images/01_xiaopiti.jpg" alt="小䴙䴘">
+    <div class="bird-name"><span class="cn">小䴙䴘</span><span class="en">Little Grebe</span><span class="tag common">常见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">奥森繁殖鸟。鸭子模样但更小更圆,繁殖羽脸颊和颈侧栗红色。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">浮水/潜水交替找鱼。叫声尖锐颤音"咯咯咯咯"。</span></div>
+  </div>
+
+  <div class="bird" id="b02">
+    <img class="bird-photo" src="images/02_heishuiji.jpg" alt="黑水鸡">
+    <div class="bird-name"><span class="cn">黑水鸡</span><span class="en">Common Moorhen</span><span class="tag common">常见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">通体偏黑,<strong>红色额甲 + 黄尖红喙</strong>,体侧一道白纹。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">不太怕人,贴岸边芦苇游。游水时尾巴一翘一翘,露尾下两白斑。</span></div>
+  </div>
+
+  <div class="bird" id="b03">
+    <img class="bird-photo" src="images/03_baiguding.jpg" alt="白骨顶">
+    <div class="bird-name"><span class="cn">白骨顶</span><span class="en">Eurasian Coot</span><span class="tag common">常见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">和黑水鸡像但更胖一圈,<strong>整张脸纯白</strong>(额甲+喙都是白的)。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">擅长潜水(黑水鸡基本不潜)。常成群在湖中央。</span></div>
+  </div>
+
+  <div class="bird" id="b04">
+    <img class="bird-photo" src="images/04_lvtouya.jpg" alt="绿头鸭">
+    <div class="bird-name"><span class="cn">绿头鸭</span><span class="en">Mallard</span><span class="tag common">常见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">雄鸟头颈墨绿带金属光泽,颈部白圈,胸栗色。雌鸟全身斑驳棕色。</span></div>
+    <div class="field"><span class="key">注意</span><span class="val">五月已是繁殖期,可能见母鸭带一串小鸭子。</span></div>
+  </div>
+
+  <div class="bird" id="b05">
+    <img class="bird-photo" src="images/05_yuanyang.jpg" alt="鸳鸯">
+    <div class="bird-name"><span class="cn">鸳鸯</span><span class="en">Mandarin Duck</span><span class="tag uncommon">偶见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">雄鸟橙色"船帆状"翅羽立在背上,脸侧白纹+红喙。雌鸟灰褐配白色眼圈。</span></div>
+    <div class="field"><span class="key">何处找</span><span class="val">开阔水面边缘有树荫的位置。通常成对。</span></div>
+  </div>
+
+  <div class="bird" id="b06">
+    <img class="bird-photo" src="images/06_canglu.jpg" alt="苍鹭">
+    <div class="bird-name"><span class="cn">苍鹭</span><span class="en">Grey Heron</span><span class="tag common">常见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">大型涉禽,灰蓝色长脖子,<strong>头顶一道黑色饰羽</strong>。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">浅滩一动不动伫立等鱼。飞行时颈缩成 S 形。可能见到<strong>夜鹭</strong>(矮胖、头黑背蓝、红眼)。</span></div>
+  </div>
+
+  <div class="bird" id="b07">
+    <img class="bird-photo" src="images/23_putongcuiniao.jpg" alt="普通翠鸟">
+    <div class="bird-name"><span class="cn">普通翠鸟</span><span class="en">Common Kingfisher</span><span class="tag star">★ 必看</span></div>
+    <div class="field"><span class="key">看点</span><span class="val"><strong>背部电光蓝、胸腹橙红</strong>,麻雀大小。停在水边低枝上如宝石一样发光。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">俯冲入水捕鱼,一闪即逝。沿水岸飞行时发出尖细"叽——"哨音。</span></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ -->
+<!--  II. 芦苇湿地  8 种                   -->
+<!-- ══════════════════════════════════════ -->
+<section class="habitat" id="h2">
+  <div class="habitat-head"><div class="habitat-num">II</div><div class="habitat-title">芦苇湿地</div><div class="habitat-en">Reed Marsh</div></div>
+  <p class="habitat-desc">奥森南园湿地的核心。五月芦苇正盛,多听少看,耐心蹲点。</p>
+
+  <div class="bird" id="b08">
+    <img class="bird-photo" src="images/07_dadaweiying.jpg" alt="东方大苇莺">
+    <div class="bird-name"><span class="cn">东方大苇莺</span><span class="en">Oriental Reed Warbler</span><span class="tag star">★ 必看</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">五月奥森芦苇区的"声音主角"。土褐色小鸟,叫声<strong>"嘎-嘎-叽-叽-嘎-嘎"</strong>粗哑分明。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">繁殖期雄鸟站到芦苇尖端高歌,循声找苇尖即可。</span></div>
+  </div>
+
+  <div class="bird" id="b09">
+    <img class="bird-photo" src="images/08_zhendanyaque.jpg" alt="震旦鸦雀">
+    <div class="bird-name"><span class="cn">震旦鸦雀</span><span class="en">Reed Parrotbill</span><span class="tag star">★ 鸟中熊猫</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">全球濒危。<strong>黄色短粗喙</strong>,头顶灰、<strong>眼上一道黑眉</strong>。奥森南园湿地是北京城内最稳定的观察点之一。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">小群活动,攀附在芦苇秆上啄虫。</span></div>
+  </div>
+
+  <div class="bird" id="b10">
+    <img class="bird-photo" src="images/09_putongyangji.jpg" alt="普通秧鸡">
+    <div class="bird-name"><span class="cn">普通秧鸡</span><span class="en">Brown-cheeked Rail</span><span class="tag uncommon">隐蔽难见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">长红喙、灰脸、体侧黑白横纹。<strong>极度怕人</strong>,芦苇丛底层潜行。</span></div>
+    <div class="field"><span class="key">小窍门</span><span class="val">在芦苇与水面交界处耐心守候 10–15 分钟。</span></div>
+  </div>
+
+  <div class="bird" id="b11">
+    <img class="bird-photo" src="images/10_damaijian.jpg" alt="大麻鳽">
+    <div class="bird-name"><span class="cn">大麻鳽</span><span class="en">Eurasian Bittern</span><span class="tag uncommon">伪装大师</span></div>
+    <div class="field"><span class="key">看点</span><span class="val"><strong>整个就是一根会动的芦苇</strong>。受惊时"竖脖站立",嘴指向天空。</span></div>
+    <div class="field"><span class="key">能看到算运气</span><span class="val">湿地深处传来低沉的"嗡——"远距离闷响,大概率就是它。</span></div>
+  </div>
+
+  <div class="bird" id="b12">
+    <img class="bird-photo" src="images/11_daduwu.jpg" alt="大杜鹃">
+    <div class="bird-name"><span class="cn">大杜鹃（布谷）</span><span class="en">Common Cuckoo</span><span class="tag common">声音常见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">体型像鸽子,灰蓝背、白腹黑横纹,远看像小型猛禽。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">大概率"<strong>只闻其声不见其影</strong>"——"布——谷、布——谷"两音节。会把蛋下到大苇莺巢里。</span></div>
+  </div>
+
+  <div class="bird" id="b13">
+    <img class="bird-photo" src="images/37_lanhougequ.jpg" alt="蓝喉歌鸲">
+    <div class="bird-name"><span class="cn">蓝喉歌鸲</span><span class="en">Bluethroat</span><span class="tag star">★ 颜值</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">雄鸟<strong>喉部宝蓝色中央嵌一块橙红斑</strong>,如胸前别了一枚勋章。</span></div>
+    <div class="field"><span class="key">何处找</span><span class="val">芦苇与灌丛交界处地面、低枝。五月仍有过境个体。</span></div>
+  </div>
+
+  <div class="bird" id="b14">
+    <img class="bird-photo" src="images/38_zongtouYaqu.jpg" alt="棕头鸦雀">
+    <div class="bird-name"><span class="cn">棕头鸦雀</span><span class="en">Vinous-throated Parrotbill</span><span class="tag common">常见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val"><strong>棕红色头顶</strong>,短粗黄灰喙,体型圆小。和震旦鸦雀同科但更常见。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">嘈杂小群在芦苇和灌木间穿梭,叫声"嗒嗒嗒"细碎。</span></div>
+  </div>
+
+  <div class="bird" id="b15">
+    <img class="bird-photo" src="images/39_zhonghuapanque.jpg" alt="中华攀雀">
+    <div class="bird-name"><span class="cn">中华攀雀</span><span class="en">Chinese Penduline Tit</span><span class="tag uncommon">偶见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val"><strong>白脸上一道宽黑眼罩</strong>,栗红色背,体型比山雀还小。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">攀附在芦苇或柳枝上,能倒挂觅食。叫声细弱"唧唧"。</span></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ -->
+<!--  III. 林地与林缘  21 种               -->
+<!-- ══════════════════════════════════════ -->
+<section class="habitat" id="h3">
+  <div class="habitat-head"><div class="habitat-num">III</div><div class="habitat-title">林地与林缘</div><div class="habitat-en">Woodland & Edge</div></div>
+  <p class="habitat-desc">乔木林、灌丛、林缘步道两侧。多抬头看树冠中层。</p>
+
+  <div class="bird" id="b16">
+    <img class="bird-photo" src="images/12_daisheng.jpg" alt="戴胜">
+    <div class="bird-name"><span class="cn">戴胜</span><span class="en">Eurasian Hoopoe</span><span class="tag star">★ 颜值担当</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">辨识零难度。橙粉色身体,<strong>头顶扇形冠羽</strong>,黑白翅斑,长长的弯喙。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">爱在草地上一蹦一蹦地走。叫声"hu-hu-hu"三连音。</span></div>
+  </div>
+
+  <div class="bird" id="b17">
+    <img class="bird-photo" src="images/13_hongzuilanque.jpg" alt="红嘴蓝鹊">
+    <div class="bird-name"><span class="cn">红嘴蓝鹊</span><span class="en">Red-billed Blue Magpie</span><span class="tag star">★ 必看</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">奥森"明星颜值担当"。<strong>亮蓝色,红喙红脚</strong>,<strong>极长的蓝白渐变尾羽</strong>。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">小群活动,叫声嘈杂尖锐。飞行时尾巴如飘带。</span></div>
+  </div>
+
+  <div class="bird" id="b18">
+    <img class="bird-photo" src="images/28_heizhenhuangli.jpg" alt="黑枕黄鹂">
+    <div class="bird-name"><span class="cn">黑枕黄鹂</span><span class="en">Black-naped Oriole</span><span class="tag star">★ 必看</span></div>
+    <div class="field"><span class="key">看点</span><span class="val"><strong>全身金黄,过眼至后枕一道粗黑带</strong>,红喙,翅尖黑色。雌鸟偏黄绿色。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">鸣声婉转悦耳如液体流淌。通常在高树冠层活动,不易见到身影。</span></div>
+  </div>
+
+  <div class="bird" id="b19">
+    <img class="bird-photo" src="images/14_huixique.jpg" alt="灰喜鹊">
+    <div class="bird-name"><span class="cn">灰喜鹊</span><span class="en">Azure-winged Magpie</span><span class="tag common">极常见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val"><strong>黑头、灰背、淡蓝色长尾和翅膀</strong>。比普通喜鹊小一号,配色更柔。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">永远嘈杂集群移动。叫声"jia-jia-jia"。</span></div>
+  </div>
+
+  <div class="bird" id="b20">
+    <img class="bird-photo" src="images/15_dabanzhuomuniao.jpg" alt="大斑啄木鸟">
+    <div class="bird-name"><span class="cn">大斑啄木鸟</span><span class="en">Great Spotted Woodpecker</span><span class="tag common">常见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">黑白对比强烈,肩部两块大白斑,<strong>尾下覆羽鲜红色</strong>。雄鸟后脑红斑。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">"咚咚咚咚"快速敲击声。沿树干向上螺旋式攀爬。</span></div>
+  </div>
+
+  <div class="bird" id="b21">
+    <img class="bird-photo" src="images/16_huitoulvzhuomuniao.jpg" alt="灰头绿啄木鸟">
+    <div class="bird-name"><span class="cn">灰头绿啄木鸟</span><span class="en">Grey-headed Woodpecker</span><span class="tag common">常见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">通体橄榄绿,灰色脸和颈。<strong>雄鸟头顶一小块红斑</strong>。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">叫声"keu-keu-keu-keu"渐慢。常在地面草丛里啄蚂蚁。</span></div>
+  </div>
+
+  <div class="bird" id="b22">
+    <img class="bird-photo" src="images/17_wudong.jpg" alt="乌鸫">
+    <div class="bird-name"><span class="cn">乌鸫</span><span class="en">Chinese Blackbird</span><span class="tag common">极常见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">通体乌黑,<strong>橙黄色喙和眼圈</strong>极其显眼。比乌鸦小很多。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">"鸟界口技达人",能模仿手机铃声、汽车警报。清晨独唱多半是它。</span></div>
+  </div>
+
+  <div class="bird" id="b23">
+    <img class="bird-photo" src="images/18_heiweilazuique.jpg" alt="黑尾蜡嘴雀">
+    <div class="bird-name"><span class="cn">黑尾蜡嘴雀</span><span class="en">Chinese Grosbeak</span><span class="tag common">常见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val"><strong>夸张的黄色粗喙</strong>(像沾了蜡),雄鸟头黑、身体淡黄褐色。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">小群活动在树冠中层,吃种子。叫声清脆有金属感。</span></div>
+  </div>
+
+  <div class="bird" id="b24">
+    <img class="bird-photo" src="images/19_dashanque.jpg" alt="大山雀">
+    <div class="bird-name"><span class="cn">大山雀</span><span class="en">Great Tit</span><span class="tag common">极常见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val"><strong>白脸黑头黑领带</strong>——胸前一条黑色纵带("黑拉链"绰号由来)。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">极其活跃,叫声"咦——叽-叽-叽"清亮。</span></div>
+  </div>
+
+  <div class="bird" id="b25">
+    <img class="bird-photo" src="images/24_hongweibolao.jpg" alt="红尾伯劳">
+    <div class="bird-name"><span class="cn">红尾伯劳</span><span class="en">Brown Shrike</span><span class="tag common">常见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">过眼黑带明显(像戴了黑眼罩),<strong>尾羽棕红色</strong>,背棕褐。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">喜站在灌木顶端或电线上俯视猎物,可将猎物穿刺在荆棘上储存。</span></div>
+  </div>
+
+  <div class="bird" id="b26">
+    <img class="bird-photo" src="images/25_niutoubolao.jpg" alt="牛头伯劳">
+    <div class="bird-name"><span class="cn">牛头伯劳</span><span class="en">Bull-headed Shrike</span><span class="tag uncommon">偶见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val"><strong>头顶栗红色</strong>、灰色背,白色眉纹+黑色过眼纹。雌鸟体侧有鳞状纹。</span></div>
+    <div class="field"><span class="key">区别红尾伯劳</span><span class="val">牛头伯劳头顶栗红色、背灰;红尾伯劳头顶灰色、背棕褐、尾更红。</span></div>
+  </div>
+
+  <div class="bird" id="b27">
+    <img class="bird-photo" src="images/26_yinhouchanwei.jpg" alt="银喉长尾山雀">
+    <div class="bird-name"><span class="cn">银喉长尾山雀</span><span class="en">Silver-throated Bushtit</span><span class="tag common">常见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">白色头顶带黑色侧冠纹,喉部银白色,<strong>尾巴极长</strong>。体型如乒乓球大小。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">群体行动,不停在枝头跳跃。叫声细细"嗞嗞"。</span></div>
+  </div>
+
+  <div class="bird" id="b28">
+    <img class="bird-photo" src="images/27_beichangwei.jpg" alt="北长尾山雀">
+    <div class="bird-name"><span class="cn">北长尾山雀</span><span class="en">Long-tailed Tit</span><span class="tag uncommon">偶见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val"><strong>头部纯白无纵纹</strong>(区别银喉长尾山雀的关键),体粉白,长尾。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">与银喉长尾山雀习性相似,冬春混群常见。</span></div>
+  </div>
+
+  <div class="bird" id="b29">
+    <img class="bird-photo" src="images/29_jinchique.jpg" alt="金翅雀">
+    <div class="bird-name"><span class="cn">金翅雀</span><span class="en">Grey-capped Greenfinch</span><span class="tag common">常见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val"><strong>飞起时翅膀闪现大块金黄色斑</strong>,停时看到黄绿色翅斑和黄色尾基。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">小群活动于种子多的灌木丛和草地边缘。叫声"叽唧"带颤。</span></div>
+  </div>
+
+  <div class="bird" id="b30">
+    <img class="bird-photo" src="images/30_zhaozeshanjue.jpg" alt="沼泽山雀">
+    <div class="bird-name"><span class="cn">沼泽山雀</span><span class="en">Marsh Tit</span><span class="tag common">常见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val"><strong>黑色光亮头盖</strong>,白色脸颊,无翅斑(区别大山雀)。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">叫声清脆"丘比-丘比"。单独或成对活动于林缘灌丛。</span></div>
+  </div>
+
+  <div class="bird" id="b31">
+    <img class="bird-photo" src="images/31_huangfushanjue.jpg" alt="黄腹山雀">
+    <div class="bird-name"><span class="cn">黄腹山雀</span><span class="en">Yellow-bellied Tit</span><span class="tag uncommon">偶见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">中国特有种。<strong>腹部鲜黄色</strong>,雄鸟背蓝黑色、有两道白色翅斑,体型娇小。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">活跃于松柏混交林树冠。五月在奥森属于运气鸟。</span></div>
+  </div>
+
+  <div class="bird" id="b32">
+    <img class="bird-photo" src="images/32_anlvxiuyan.jpg" alt="暗绿绣眼鸟">
+    <div class="bird-name"><span class="cn">暗绿绣眼鸟</span><span class="en">Swinhoe's White-eye</span><span class="tag common">常见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">小巧翠绿,<strong>眼周一圈明显的白色眼圈</strong>(绣眼之名由此来)。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">群体在花树上觅蜜和小虫。叫声连续"唧唧唧"细密。</span></div>
+  </div>
+
+  <div class="bird" id="b33">
+    <img class="bird-photo" src="images/33_huangyaoliuying.jpg" alt="黄腰柳莺">
+    <div class="bird-name"><span class="cn">黄腰柳莺</span><span class="en">Pallas's Leaf Warbler</span><span class="tag uncommon">过境</span></div>
+    <div class="field"><span class="key">看点</span><span class="val"><strong>腰部亮黄色</strong>是核心特征,头顶有黄色中央冠纹,双翅斑清晰。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">在树冠上层快速跳跃,叫声"唧唧"高频细弱。五月底可能仍有过境个体。</span></div>
+  </div>
+
+  <div class="bird" id="b34">
+    <img class="bird-photo" src="images/34_wuweng.jpg" alt="乌鹟">
+    <div class="bird-name"><span class="cn">乌鹟</span><span class="en">Dark-sided Flycatcher</span><span class="tag uncommon">过境</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">上体深褐色,胸侧和两胁<strong>深色纵纹浓重</strong>。眼圈不明显。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">停在突出低枝上,发现飞虫即出击,再飞回原枝。</span></div>
+  </div>
+
+  <div class="bird" id="b35">
+    <img class="bird-photo" src="images/35_beihuiweng.jpg" alt="北灰鹟">
+    <div class="bird-name"><span class="cn">北灰鹟</span><span class="en">Asian Brown Flycatcher</span><span class="tag uncommon">过境</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">浅灰褐色,腹部白,<strong>眼圈淡白色</strong>较明显。比乌鹟颜色更浅淡。</span></div>
+    <div class="field"><span class="key">区别乌鹟</span><span class="val">北灰鹟整体苍白,胸侧纵纹模糊;乌鹟体色深,纵纹粗重。</span></div>
+  </div>
+
+  <div class="bird" id="b36">
+    <img class="bird-photo" src="images/36_baitaobei.jpg" alt="白头鹎">
+    <div class="bird-name"><span class="cn">白头鹎</span><span class="en">Light-vented Bulbul</span><span class="tag common">极常见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val"><strong>白色枕部</strong>(脑后白毛)和<strong>白色颊斑</strong>,黑色头顶,黄色尾下覆羽。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">叫声多变悦耳。北京近年扩散中,奥森已稳定定居。</span></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ -->
+<!--  IV. 草地与空中  13 种                -->
+<!-- ══════════════════════════════════════ -->
+<section class="habitat" id="h4">
+  <div class="habitat-head"><div class="habitat-num">IV</div><div class="habitat-title">草地与空中</div><div class="habitat-en">Grassland & Sky</div></div>
+  <p class="habitat-desc">开阔草坪上空、湖面上空、步道旁开阔地。看燕子、鹀类、鹨类和猛禽。</p>
+
+  <div class="bird" id="b37">
+    <img class="bird-photo" src="images/20_jiayan.jpg" alt="家燕">
+    <div class="bird-name"><span class="cn">家燕</span><span class="en">Barn Swallow</span><span class="tag common">极常见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">蓝黑色背、<strong>砖红色喉部</strong>、白腹,深叉的剪刀尾。</span></div>
+    <div class="field"><span class="key">何处找</span><span class="val">湖面、草地上空低飞兜虫。常和金腰燕一起出现。</span></div>
+  </div>
+
+  <div class="bird" id="b38">
+    <img class="bird-photo" src="images/21_jinyaoyan.jpg" alt="金腰燕">
+    <div class="bird-name"><span class="cn">金腰燕</span><span class="en">Red-rumped Swallow</span><span class="tag common">常见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val"><strong>腰部一道明显的橙红色带</strong>,腹部细密纵纹。</span></div>
+    <div class="field"><span class="key">小技巧</span><span class="val">飞行时看燕子的腰:橙色带=金腰燕;干净蓝黑=家燕。</span></div>
+  </div>
+
+  <div class="bird" id="b39">
+    <img class="bird-photo" src="images/22_zhujingbanjiu.jpg" alt="珠颈斑鸠">
+    <div class="bird-name"><span class="cn">珠颈斑鸠</span><span class="en">Spotted Dove</span><span class="tag common">极常见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">像鸽子但更瘦长,<strong>颈侧一块黑底白点的"珍珠斑"</strong>是识别核心。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">叫声"咕咕——咕"。地面草地、步道上踱步觅食。</span></div>
+  </div>
+
+  <div class="bird" id="b40">
+    <img class="bird-photo" src="images/40_shanjiling.jpg" alt="山鹡鸰">
+    <div class="bird-name"><span class="cn">山鹡鸰</span><span class="en">Forest Wagtail</span><span class="tag uncommon">过境</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">黄绿背、双道黑色翅斑。<strong>尾巴左右横摇</strong>而非上下摆(鹡鸰中独此一家)。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">在林间步道或草地上觅食,五月仍有过境个体路经奥森。</span></div>
+  </div>
+
+  <div class="bird" id="b41">
+    <img class="bird-photo" src="images/41_lieierbu.jpg" alt="栗耳鹀">
+    <div class="bird-name"><span class="cn">栗耳鹀</span><span class="en">Chestnut-eared Bunting</span><span class="tag uncommon">过境</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">雄鸟<strong>耳羽栗红色</strong>、头顶灰、胸部有黑色胸带。雌鸟较暗淡。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">落地后在草丛或矮灌木间觅食草籽。五月底过境尾声。</span></div>
+  </div>
+
+  <div class="bird" id="b42">
+    <img class="bird-photo" src="images/42_huitoubu.jpg" alt="灰头鹀">
+    <div class="bird-name"><span class="cn">灰头鹀</span><span class="en">Black-faced Bunting</span><span class="tag uncommon">过境</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">雄鸟<strong>头颈橄榄灰色</strong>,腹部黄色。雌鸟头部有黄色眉纹。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">常混在其他鹀群中,在地面或低矮植被上觅食。</span></div>
+  </div>
+
+  <div class="bird" id="b43">
+    <img class="bird-photo" src="images/43_heihoushibu.jpg" alt="黑喉石鵖">
+    <div class="bird-name"><span class="cn">黑喉石鵖</span><span class="en">Siberian Stonechat</span><span class="tag uncommon">过境</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">雄鸟<strong>头黑、肩部白斑、胸橙红</strong>,停在突出枝上如浓缩版小猛禽。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">开阔地灌木顶端停栖,尾巴频繁上下抖动。</span></div>
+  </div>
+
+  <div class="bird" id="b44">
+    <img class="bird-photo" src="images/44_huangmeibu.jpg" alt="黄眉鹀">
+    <div class="bird-name"><span class="cn">黄眉鹀</span><span class="en">Yellow-browed Bunting</span><span class="tag uncommon">过境</span></div>
+    <div class="field"><span class="key">看点</span><span class="val"><strong>眉纹鲜黄色</strong>醒目,头顶黑褐色,双翅斑白色。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">常在林缘草地或步道旁低矮处活动。五月底仍有个体过境。</span></div>
+  </div>
+
+  <div class="bird" id="b45">
+    <img class="bird-photo" src="images/45_huangxiongbu.jpg" alt="黄胸鹀">
+    <div class="bird-name"><span class="cn">黄胸鹀</span><span class="en">Yellow-breasted Bunting</span><span class="tag star">★ 极危</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">全球极危(CR)。雄鸟<strong>胸部鲜黄色、胸前一道栗色胸带</strong>,头黑。曾是东亚最常见过境鸟之一。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">草地灌丛边缘觅食草籽。五月底能见到即是幸运。</span></div>
+  </div>
+
+  <div class="bird" id="b46">
+    <img class="bird-photo" src="images/46_shulin.jpg" alt="树鹨">
+    <div class="bird-name"><span class="cn">树鹨</span><span class="en">Olive-backed Pipit</span><span class="tag common">常见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">背部橄榄绿色(与其他鹨区别),腹部白色带黑色纵纹,<strong>眉纹淡黄绿色</strong>。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">在草地上行走觅食,尾巴上下点动。叫声"嗞——"细弱。</span></div>
+  </div>
+
+  <div class="bird" id="b47">
+    <img class="bird-photo" src="images/47_lishilin.jpg" alt="理氏鹨">
+    <div class="bird-name"><span class="cn">理氏鹨</span><span class="en">Richard's Pipit</span><span class="tag common">常见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">鹨类中体型最大之一。<strong>后爪极长</strong>,腿长,站姿笔直。皮黄色眉纹,纵纹粗。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">在开阔草地大步行走。受惊飞起时叫声响亮"叽——叽"。</span></div>
+  </div>
+
+  <div class="bird" id="b48">
+    <img class="bird-photo" src="images/48_huiliangniao.jpg" alt="灰椋鸟">
+    <div class="bird-name"><span class="cn">灰椋鸟</span><span class="en">White-cheeked Starling</span><span class="tag common">常见</span></div>
+    <div class="field"><span class="key">看点</span><span class="val"><strong>白色脸颊和额部</strong>与深灰色体羽对比鲜明,橙红色喙,飞行时腰部白色。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">常成大群在草地上行走觅食,也停于树冠。叫声嘈杂多变。</span></div>
+  </div>
+
+  <div class="bird" id="b49">
+    <img class="bird-photo" src="images/49_chifuying.jpg" alt="赤腹鹰">
+    <div class="bird-name"><span class="cn">赤腹鹰</span><span class="en">Chinese Sparrowhawk</span><span class="tag uncommon">过境</span></div>
+    <div class="field"><span class="key">看点</span><span class="val">小型猛禽。成鸟<strong>胸腹橙红色,翅下白色</strong>,背蓝灰色,翅尖黑色。</span></div>
+    <div class="field"><span class="key">行为</span><span class="val">五月过境,常在林缘上空盘旋或快速穿林。注意看湖面上空。</span></div>
+  </div>
+</section>
+
+<div class="footer">
+  <p>Compiled for a May field visit · 49 species · 祝有好风、好光、好鸟</p>
+</div>
+
+</div>
+</body>
+</html>
